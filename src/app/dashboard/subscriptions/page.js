@@ -58,9 +58,7 @@ export default function Subscription() {
   return (
     <>
       {userPharmacy?.length == 0 ? (
-        <div className="flex font-lexend  items-center flex-col w-full h-screen justify-center gap-8">
-          <StartupScreen></StartupScreen>
-        </div>
+        <StartupScreen></StartupScreen>
       ) : (
         <div className="w-full p-4 flex relative flex-col gap-4 ">
           <div className="w-full">

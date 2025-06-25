@@ -19,7 +19,7 @@ export default function Pharmacy() {
 
   return (
     <>
-      {userPharmacy.length == 0 ? (
+      {userPharmacy?.length == 0 ? (
         <StartupScreen></StartupScreen>
       ) : (
         <div className="px-6 space-y-4 mt-6">

@@ -5,10 +5,8 @@ import { Aside } from "@/Components/layout/Aside";
 import { usePathname, useRouter } from "next/navigation";
 import StartupScreen from "@/Components/ui/StartupScreen";
 export default function Layout({ children }) {
-  const {
-    userAuthed,
-    user: { userPharmacy },
-  } = useContext(UserContext);
+  const { userAuthed, user } = useContext(UserContext);
+  const userPharmacy = user?.userPharmacy;
   const router = useRouter();
   const pathname = usePathname();
   // If the user is not authenticated, redirect to the login page
@@ -32,11 +30,7 @@ export default function Layout({ children }) {
               ?.join(" > ")}
           </h1>
 
-          {userPharmacy?.length === 0 ? (
-            <StartupScreen></StartupScreen>
-          ) : (
-            <>{children}</>
-          )}
+          <>{children}</>
         </div>
       </div>
     )

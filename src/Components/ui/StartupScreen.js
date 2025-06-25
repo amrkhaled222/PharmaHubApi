@@ -5,7 +5,7 @@ import MainButton from "@/Components/input/MainButton";
 export default function StartupScreen() {
   const router = useRouter();
   return (
-    <div className="flex flex-col items-center justify-center gap-4">
+    <div className="flex flex-col items-center  w-full justify-center gap-4">
       <Image
         src="/icons/Logo.svg"
         alt="Empty Pharmacy"
@@ -19,14 +19,16 @@ export default function StartupScreen() {
         Every journey starts with a step. Begin yours by adding your first
         pharmacy to unlock the full power of your medicine network.
       </p>
-      <MainButton
-        style="w-[50%] m-auto font-inter"
-        onClick={() => {
-          router.push("/dashboard/Pharmacy/add");
-        }}
-      >
-        let's get started
-      </MainButton>
+      <div className=" ">
+        <MainButton
+          style="m-auto font-inter"
+          onClick={() => {
+            router.push("/dashboard/Pharmacy/add");
+          }}
+        >
+          let's get started
+        </MainButton>
+      </div>
     </div>
   );
 }

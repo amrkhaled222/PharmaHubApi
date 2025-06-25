@@ -7,6 +7,7 @@ import Spinner from "@/Components/ui/Spinner";
 import { useCallback } from "react";
 import ReactPaginate from "react-paginate";
 import TextInput from "@/Components/input/TextInput";
+import StartupScreen from "@/Components/ui/StartupScreen";
 export default function Medicines() {
   const [medicines, setMedicines] = useState([]);
   const {
@@ -67,44 +68,50 @@ export default function Medicines() {
 
   return (
     <>
-      <div className="px-4">
-        <TextInput
-          value={pagination}
-          inputName={"Search"}
-          state={false}
-          onChange={handleSearchChange}
-          placeholder="Search by name or company"
-        ></TextInput>
-      </div>
-      {loading ? (
-        <div className="flex items-center  justify-center w-full h-full">
-          <Spinner size="200"></Spinner>
-        </div>
+      {userPharmacy?.length == 0 ? (
+        <StartupScreen></StartupScreen>
       ) : (
-        <div className="w-full p-4 flex relative flex-col gap-4 overflow-auto">
-          <Table data={medicines} setData={setMedicines} />
-          <ReactPaginate
-            breakLabel="..."
-            nextLabel="next >"
-            nextClassName="text-lightBlue whitespace-nowrap border-[0.5px] flex justify-center items-center w-full h-full hover:scale-95 cursor-pointer border-lightBlue rounded-md ease-in-out duration-300 transform"
-            previousClassName="text-lightBlue whitespace-nowrap border-[0.5px] flex justify-center items-center w-full h-full hover:scale-95 cursor-pointer border-lightBlue rounded-md ease-in-out duration-300 transform"
-            pageClassName="text-lightBlue border-[0.5px] flex justify-center items-center w-full h-full lg:flex hidden hover:scale-95 cursor-pointer border-lightBlue  rounded-md ease-in-out duration-300 transform"
-            onPageChange={({ selected }) => {
-              getMedicines(selected + 1);
-            }}
-            activeClassName="text-white bg-lightBlue border-[0.5px] border-lightBlue rounded-md ease-in-out duration-300 transform"
-            pageRangeDisplayed={4}
-            pageCount={pagination.totalPages}
-            forcePage={pagination.currentPage - 1}
-            previousLabel="< previous"
-            renderOnZeroPageCount={null}
-            pageLinkClassName="w-full h-full flex px-2 py-2 items-center justify-center"
-            nextLinkClassName="w-full h-full flex px-2 py-2 items-center justify-center"
-            previousLinkClassName="w-full h-full flex px-2 py-2 items-center justify-center"
-            className="flex justify-center gap-2 md:gap-6 items-center w-full ease-in-out duration-300 transform"
-            containerClassName="w-full"
-          />
-        </div>
+        <>
+          <div className="px-4">
+            <TextInput
+              value={pagination}
+              inputName={"Search"}
+              state={false}
+              onChange={handleSearchChange}
+              placeholder="Search by name or company"
+            ></TextInput>
+          </div>
+          {loading ? (
+            <div className="flex items-center  justify-center w-full h-full">
+              <Spinner size="200"></Spinner>
+            </div>
+          ) : (
+            <div className="w-full p-4 flex relative flex-col gap-4 overflow-auto">
+              <Table data={medicines} setData={setMedicines} />
+              <ReactPaginate
+                breakLabel="..."
+                nextLabel="next >"
+                nextClassName="text-lightBlue whitespace-nowrap border-[0.5px] flex justify-center items-center w-full h-full hover:scale-95 cursor-pointer border-lightBlue rounded-md ease-in-out duration-300 transform"
+                previousClassName="text-lightBlue whitespace-nowrap border-[0.5px] flex justify-center items-center w-full h-full hover:scale-95 cursor-pointer border-lightBlue rounded-md ease-in-out duration-300 transform"
+                pageClassName="text-lightBlue border-[0.5px] flex justify-center items-center w-full h-full lg:flex hidden hover:scale-95 cursor-pointer border-lightBlue  rounded-md ease-in-out duration-300 transform"
+                onPageChange={({ selected }) => {
+                  getMedicines(selected + 1);
+                }}
+                activeClassName="text-white bg-lightBlue border-[0.5px] border-lightBlue rounded-md ease-in-out duration-300 transform"
+                pageRangeDisplayed={4}
+                pageCount={pagination.totalPages}
+                forcePage={pagination.currentPage - 1}
+                previousLabel="< previous"
+                renderOnZeroPageCount={null}
+                pageLinkClassName="w-full h-full flex px-2 py-2 items-center justify-center"
+                nextLinkClassName="w-full h-full flex px-2 py-2 items-center justify-center"
+                previousLinkClassName="w-full h-full flex px-2 py-2 items-center justify-center"
+                className="flex justify-center gap-2 md:gap-6 items-center w-full ease-in-out duration-300 transform"
+                containerClassName="w-full"
+              />
+            </div>
+          )}
+        </>
       )}
     </>
   );
