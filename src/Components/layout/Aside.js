@@ -33,11 +33,11 @@ export const Aside = () => {
   };
   console.log(router, "router.pathname");
   const links = [
-    {
-      icon: "/icons/Home.svg",
-      href: "/dashboard/home",
-      label: "Dashboard",
-    },
+    // {
+    //   icon: "/icons/Home.svg",
+    //   href: "/dashboard/home",
+    //   label: "Dashboard",
+    // },
 
     {
       icon: "/icons/Pharmacy.svg",
@@ -59,11 +59,11 @@ export const Aside = () => {
       href: "/dashboard/subscriptions",
       label: "Subscriptions",
     },
-    {
-      icon: "/icons/Settings.svg",
-      href: "/dashboard/settings",
-      label: "Settings",
-    },
+    // {
+    //   icon: "/icons/Settings.svg",
+    //   href: "/dashboard/settings",
+    //   label: "Settings",
+    // },
   ];
   return (
     <aside className="bg-[#F7FAFC] h-full flex-col flex justify-between   shadow-md p-4">

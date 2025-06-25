@@ -13,7 +13,7 @@ export default function Home() {
   const router = useRouter();
   useEffect(() => {
     if (userAuthed) {
-      router.push("/dashboard/home");
+      router.push("/dashboard/Pharmacy");
     }
   }, [userAuthed]);
   return (

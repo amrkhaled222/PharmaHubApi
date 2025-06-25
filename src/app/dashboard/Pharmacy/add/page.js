@@ -56,7 +56,7 @@ export default function AddPharmacy() {
       toast(response.data.message || "Pharmacy created successfully", {
         type: "success",
       });
-      router.push("/dashboard/home");
+      router.push("/dashboard/Pharmacy");
     } catch (error) {
       console.error(error);
       toast(error?.response?.data?.message || "Failed to create pharmacy", {

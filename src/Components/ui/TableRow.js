@@ -22,7 +22,7 @@ export default function TableRow({
     try {
       const response = await api.post(`/pharmacy/${userPharmacy[0].ID}/drug`, {
         DrugID: ID,
-        isFounded: v,
+        IsFounded: v,
       });
       setIsFounded(v);
     } catch (error) {
