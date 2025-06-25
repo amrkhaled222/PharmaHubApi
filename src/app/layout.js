@@ -2,15 +2,15 @@ import "./globals.css";
 import { Inter, Lexend, Poppins } from "next/font/google";
 import AppWrapper from "@/Components/layout/AppWrapper";
 const inter = Inter({
-  subsets: ["sans-serif", "latin"],
+  subsets: ["latin"],
   variable: "--font-inter",
 });
 const lexend = Lexend({
-  subsets: ["sans-serif", "latin"],
+  subsets: ["latin"],
   variable: "--font-lexend",
 });
 const poppins = Poppins({
-  subsets: ["sans-serif", "latin"],
+  subsets: ["latin"],
   variable: "--font-poppins",
   weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
 }); // Specify weights if needed

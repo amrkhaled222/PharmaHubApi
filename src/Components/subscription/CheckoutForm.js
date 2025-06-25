@@ -1,6 +1,5 @@
 "use client";
 import React, { useState } from "react";
-
 import { loadStripe } from "@stripe/stripe-js";
 import {
   Elements,
@@ -12,18 +11,21 @@ import api from "@/utilities/api";
 import { useUser } from "@/context/User";
 import TextInput from "../input/TextInput";
 import MainButton from "../input/MainButton";
-
+import { useSearchParams } from "next/navigation";
 // Load Stripe using your publishable test key
 const stripePromise = loadStripe(
   "pk_test_51R5BgBRt4FEEONR254py0ErPfYj8rQ1QcVtsOVtr1dltVkybkcOXTsXW2fHl7jUq83BxXJkN79H8LHP6DMBg0rNO00mqp3RqA8"
 );
 
-function CheckoutForm({ PackageID }) {
+function CheckoutForm() {
   const stripe = useStripe();
   const elements = useElements();
+  const searchParams = useSearchParams();
+
   const [loading, setLoading] = useState(false);
+
   const [data, setData] = useState({
-    PackageID: PackageID,
+    PackageID: searchParams.get("PackageID") || "",
     PharmacyID: "",
     StreetAddress: "",
     StreetAddress2: "",
@@ -34,6 +36,7 @@ function CheckoutForm({ PackageID }) {
   const {
     user: { userPharmacy },
   } = useUser();
+
   const handleSubmit = async (event) => {
     event.preventDefault();
 
