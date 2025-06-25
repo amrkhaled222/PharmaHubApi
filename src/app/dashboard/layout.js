@@ -3,7 +3,6 @@ import { useContext, useEffect } from "react";
 import { UserContext } from "@/context/User";
 import { Aside } from "@/Components/layout/Aside";
 import { usePathname, useRouter } from "next/navigation";
-import StartupScreen from "@/Components/ui/StartupScreen";
 export default function Layout({ children }) {
   const { userAuthed, user } = useContext(UserContext);
   const userPharmacy = user?.userPharmacy;

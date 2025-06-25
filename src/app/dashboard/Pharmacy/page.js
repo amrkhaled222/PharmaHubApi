@@ -26,10 +26,10 @@ export default function Pharmacy() {
           <div className="  w-full p-4 rounded-md   justify-center items-center shadow-sm  flex flex-col gap-4">
             <div className="flex w-full items-center justify-between">
               <h2 className="text-xl text-left font-lexend font-bold  capitalize">
-                {userPharmacy[0].PharmacyName}
+                {userPharmacy?.[0].PharmacyName}
               </h2>
               <Image
-                src={userPharmacy[0].Logo}
+                src={userPharmacy?.[0].Logo}
                 width={64}
                 height={64}
                 alt="pharmacy logo"
@@ -38,16 +38,16 @@ export default function Pharmacy() {
             <div className="flex w-full flex-col  : font-poppins font-medium  items-start   justify-start  gap-4">
               <p className="">
                 Address:{" "}
-                <span className="font-normal">{userPharmacy[0].Address}</span>{" "}
+                <span className="font-normal">{userPharmacy?.[0].Address}</span>{" "}
               </p>
               <p className="">
                 Phone:{" "}
-                <span className="font-normal">{userPharmacy[0].Phone}</span>{" "}
+                <span className="font-normal">{userPharmacy?.[0].Phone}</span>{" "}
               </p>
               <p className="">
                 Description:{" "}
                 <span className="font-normal">
-                  {userPharmacy[0].Description}
+                  {userPharmacy?.[0].Description}
                 </span>
               </p>
             </div>
@@ -56,15 +56,15 @@ export default function Pharmacy() {
             <GoogleMap
               mapContainerStyle={containerStyle}
               center={{
-                lat: userPharmacy[0]?.Location?.points[0]?.lat,
-                lng: userPharmacy[0]?.Location?.points[0]?.lng,
+                lat: userPharmacy?.[0]?.Location?.points[0]?.lat,
+                lng: userPharmacy?.[0]?.Location?.points[0]?.lng,
               }}
               zoom={15}
             >
               <Marker
                 position={{
-                  lat: userPharmacy[0]?.Location?.points[0]?.lat,
-                  lng: userPharmacy[0]?.Location?.points[0]?.lng,
+                  lat: userPharmacy?.[0]?.Location?.points[0]?.lat,
+                  lng: userPharmacy?.[0]?.Location?.points[0]?.lng,
                 }}
               />
             </GoogleMap>
