@@ -3,8 +3,12 @@ import { useContext, useEffect } from "react";
 import { UserContext } from "@/context/User";
 import { Aside } from "@/Components/layout/Aside";
 import { usePathname, useRouter } from "next/navigation";
+import StartupScreen from "@/Components/ui/StartupScreen";
 export default function Layout({ children }) {
-  const { userAuthed } = useContext(UserContext);
+  const {
+    userAuthed,
+    user: { userPharmacy },
+  } = useContext(UserContext);
   const router = useRouter();
   const pathname = usePathname();
   // If the user is not authenticated, redirect to the login page
@@ -27,7 +31,12 @@ export default function Layout({ children }) {
               ?.split("/")
               ?.join(" > ")}
           </h1>
-          {children}
+
+          {userPharmacy?.length === 0 ? (
+            <StartupScreen></StartupScreen>
+          ) : (
+            <>{children}</>
+          )}
         </div>
       </div>
     )

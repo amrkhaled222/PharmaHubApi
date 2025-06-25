@@ -9,6 +9,7 @@ export default function Message({
   isSender,
   TimeStamp,
 }) {
+  console.log("isSender");
   return (
     <div
       className={`flex items-start gap-2   ${
@@ -43,7 +44,7 @@ export default function Message({
               isSender ? "text-right" : "text-left"
             }`}
           >
-            {isSender ? SenderName : ReciverName}
+            {SenderName}
           </p>
           <div
             className={` py-[12px] px-4 rounded-xl ${

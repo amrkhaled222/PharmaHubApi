@@ -12,6 +12,7 @@ import Package from "@/Components/subscription/Package";
 export default function Subscription() {
   const [subscription, setSubscription] = useState({});
   const [packages, setPackages] = useState({});
+  const router = useRouter();
   const [loaders, setLoaders] = useState({
     subscription: true,
     packages: true,
@@ -61,13 +62,13 @@ export default function Subscription() {
           <StartupScreen></StartupScreen>
         </div>
       ) : (
-        <div className="w-full p-4 flex flex-col gap-4 ">
+        <div className="w-full p-4 flex relative flex-col gap-4 ">
           <div className="w-full">
             {loaders.subscription ? (
               <div className="flex justify-center items-center h-full">
                 <Spinner size="200" />
               </div>
-            ) : Object.keys(subscription)?.length ? (
+            ) : Object.keys(subscription || {})?.length ? (
               <div className=" flex flex-col gap-2 ">
                 <h2 className=" font-lexend p-4 font-bold text-xl">
                   Current Plan
@@ -95,7 +96,30 @@ export default function Subscription() {
                 </div>
               </div>
             ) : (
-              <p>No active subscription found.</p>
+              <div className="flex flex-col items-center justify-center w-full p-6 bg-[#e1f3f050] border border-lightmainColor rounded-lg shadow">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth={2}
+                  stroke="currentColor"
+                  className="w-10 h-10 text-mainColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M12 9v2m0 4h.01m-6.938 4h13.856c1.054 0 1.918-.816 1.995-1.85l.007-.15V6.2c0-1.054-.816-1.918-1.85-1.995L18.856 4H6.144c-1.054 0-1.918.816-1.995 1.85L4.144 6v12.2c0 1.054.816 1.918 1.85 1.995L6.144 20z"
+                  />
+                </svg>
+                <h2 className="mt-4 text-lg font-semibold text-mainColor">
+                  Your Subscription is Inactive
+                </h2>
+                <p className="mt-2 text-sm text-mainColor text-center">
+                  Currently, your pharmacy is not visible to users because your
+                  subscription is inactive. Consider activating a subscription
+                  to ensure your pharmacy is displayed.
+                </p>
+              </div>
             )}
           </div>
 
@@ -108,10 +132,18 @@ export default function Subscription() {
                 <div className="flex justify-center items-center h-full">
                   <Spinner size="200" />
                 </div>
-              ) : Object.keys(packages).length > 0 ? (
-                <div className="grid  grid-cols-1 md:grid-cols-2  lg:grid-cols-3 gap-[40.5PX] mt-[60px]">
-                  {Object.keys(packages).map((pkg) => (
-                    <Package packageData={packages?.[pkg]}></Package>
+              ) : Object?.keys(packages || {})?.length > 0 ? (
+                <div className="grid  isolate grid-cols-1 md:grid-cols-2  lg:grid-cols-3 gap-[40.5PX] mt-[60px]">
+                  {Object.keys(packages || {}).map((pkg, i) => (
+                    <Package
+                      key={pkg}
+                      packageData={packages?.[pkg]}
+                      onClick={(pkgID) => {
+                        router.push(
+                          "subscriptions/Checkout" + `?PackageID=${pkgID.ID}`
+                        );
+                      }}
+                    ></Package>
                   ))}
                 </div>
               ) : (

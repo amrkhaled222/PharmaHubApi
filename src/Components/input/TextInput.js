@@ -5,6 +5,7 @@ export default function TextInput({
   className,
   label,
   type,
+  state = true,
   inputName,
   ...props
 }) {
@@ -21,10 +22,14 @@ export default function TextInput({
       <input
         type={type}
         onChange={(e) => {
-          onChange((prev) => ({
-            ...prev,
-            [inputName]: e.target.value,
-          }));
+          if (state) {
+            onChange((prev) => ({
+              ...prev,
+              [inputName]: e.target.value,
+            }));
+          } else {
+            onChange(e.target.value);
+          }
         }}
         value={value[inputName] || ""}
         placeholder={placeholder}
