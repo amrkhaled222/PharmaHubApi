@@ -15,7 +15,7 @@ const nextConfig = {
       },
       {
         protocol: "https",
-        hostname: "www.google.com",
+        hostname: "pharmahub.duckdns.org",
         pathname: "**",
       },
     ],
